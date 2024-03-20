@@ -13,7 +13,7 @@ h6{
 }
 
 body{
-    background: #474a51;
+    background: #424242;
 }
 
 a{
@@ -21,6 +21,18 @@ a{
     color:whitesmoke;
 }
 
+input{
+    padding: 10px 12px;
+    display:block;
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #ececec;
+    line-height: 1.5rem;
+}
+
+p, i{
+    color:whitesmoke;
+}
 /*
 header
 */
@@ -79,4 +91,167 @@ header ul li:hover ul{
 
 header ul li ul li{
     width: 100%;
+}
+
+/*
+    SLIDER
+*/
+
+.slider-title{
+    text-align: center;
+    padding: 30px 0;
+}
+
+.carousel-inner, .carousel-item{
+    border-radius: 5px;
+}
+
+.carousel-caption h5{
+    font-size: 2rem;
+    font-weight: 500;
+    background: black;
+    max-width: 100%;
+    padding: 0.2em;
+    opacity: 0.5;
+}
+
+.carousel-caption-hack{
+    position: absolute;
+    right: 0%;
+    bottom: 0.25rem;
+    left:0%;
+    padding-top:1.25rem;
+    padding-bottom: 1.25rem ;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+
+.carousel-caption h5 a{
+    color:#fff;
+    text-decoration: none;
+    font-weight: 500;
+
+}
+
+
+/*
+Main
+
+*/
+
+.main-content h2{
+    margin: 30px;
+}
+
+.main-content .product{
+    margin-bottom: 3em;
+}
+
+.main-content .product_text{
+    background: #676767;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.main-content .post_text h3{
+    margin: 14px;
+    color:#fff;
+}
+.main-content .product_text h3 a:hover{
+    text-decoration: underline;
+    color: whitesmoke;
+}
+
+/*
+sidebar
+*/
+
+.search{
+    margin-top: 100px;
+}
+
+.sidebar .section{
+    padding:20px;
+    margin-bottom: 30px;
+}
+
+.sidebar .products ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    border-top: 1px solid #585858;
+
+}
+
+.sidebar .products ul li a{
+    display: block;
+    padding: 15px 0px 15px 0px;
+    border-bottom: 1px solid #585858;
+    transition: all 0.3s;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.sidebar .products ul li a:hover{
+    padding-left: 10px;
+    transition: all 0.3s;
+}
+
+/* footer */
+.footer{
+    background: #171717;
+    color:whitesmoke;
+    position: relative;
+}
+
+.footer .footer-section{
+    padding: 22px;
+}
+
+.footer .about .contact span{
+    display:block;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+.footer .about .socials a{
+    width:45px;
+    height:41px;
+    padding-top:5px;
+    margin-right:5px;
+    text-align: center;
+    display:inline-block;
+    font-size: 1.3em;
+    transition: all 0.3s;
+    color: whitesmoke;
+}
+
+.footer .links{
+    padding-left: 20%;
+}
+
+.footer .about .socials a:hover{
+    transition: all .3s;
+    background-color:#676767;
+}
+
+.footer .links ul a{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    transition: all .3s;
+    text-decoration: none;
+}
+
+.footer .links ul a:hover {
+    color:whitesmoke;
+    margin-left: 15px;
+    transition: all .3s;;
+}
+
+.footer .footer-bottom {
+    text-align: center;
+    background: #171717;
 }
