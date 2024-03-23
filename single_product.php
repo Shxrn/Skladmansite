@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
     <title>Складman</title>
@@ -43,9 +43,9 @@
         <h2>Характеристики - моторное масло LIQUI MOLY Special Tec AA 5W30 4л</h2>
         <div class="single_product row">
           <div class="img col-12 col-md-4">
-            <img src="images/LIQUI MOLY.jpg" alt="" class="img-thumbnail">
-            <div>
-                <button type="button" data-test="#" class="buttonbuy">Купить</button>
+            <img src="assets/images/LIQUI MOLY.jpg" alt="" class="img-thumbnail">
+            <div class="btnset">
+                <button type="button" class="btn btn-light">Купить</button>
             </div>
           </div>
           <div class="single_product_text col-12 col-md-8">

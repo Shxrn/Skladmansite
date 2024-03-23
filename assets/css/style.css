@@ -288,3 +288,17 @@ sidebar
     margin-left: 75px;
     transition: all .3s;
 }
+
+/*
+*/
+
+.container .btnset .btn-light{
+    margin:20px;
+    margin-left: 60px;
+    font-size: 1.5em;
+}
+
+.container .text_about{
+    text-align:justify;
+    word-spacing: -3px;
+}
