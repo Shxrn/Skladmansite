@@ -1,5 +1,10 @@
-<?php include("path.php"); ?>
+<?php 
+    include("path.php"); 
+    include("app/controllers/users.php");
+?>
+<?php
 
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,46 +22,46 @@
 
     <!--Форма-->
     <div class="container reg_form">
-        <form class="row justify-content-center" method="post" action="reg.html">
+        <form class="row justify-content-center" method="post" action="reg.php">
             <h2>Форма регистрации</h2>
             <div class="mb-3 col-12 col-md-4">
                 <label for="formGroupExampleInput" class="form-label">Логин</label>
-                <input type="text" class="form-control" id="login">
+                <input name="login" type="text" class="form-control" id="login">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
                 <label for="formGroupExampleInput" class="form-label">Фамилия</label>
-                <input type="text" class="form-control" id="lastName">
+                <input name="lastname" type="text" class="form-control" id="lastName">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
                 <label for="formGroupExampleInput" class="form-label">Имя</label>
-                <input type="text" class="form-control" id="firstName">
+                <input name="firstname" type="text" class="form-control" id="firstName">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
                 <label for="formGroupExampleInput" class="form-label">Отчество</label>
-                <input type="text" class="form-control" id="patronymicName">
+                <input name="patronymic" type="text" class="form-control" id="patronymicName">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
                 <label for="exampleInputPassword1" class="form-label">Пароль</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <input name="pass-first" type="password" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
                 <label for="exampleInputPassword2" class="form-label">Повтор пароля</label>
-                <input type="password" class="form-control" id="exampleInputPassword2">
+                <input name="pass-second" type="password" class="form-control" id="exampleInputPassword2">
             </div>
             <div class="w-100"></div>
             <div class="md-3 col-12 col-md-4">
-                <button type="button" class="btn btn-light">Регистрация</button>
-                <a href="log.html">Авторизоваться</a>
+                <button type="submit" class="btn btn-light" name="button-reg">Регистрация</button>
+                <a href="log.php">Авторизоваться</a>
             </div>
         </form>
     </div>
