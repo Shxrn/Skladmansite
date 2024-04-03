@@ -24,29 +24,33 @@
     <div class="container reg_form">
         <form class="row justify-content-center" method="post" action="reg.php">
             <h2>Форма регистрации</h2>
+            <div class="mb-3 col-12 col-md-4 err">
+                <p><?=$errMsg?></p>
+            </div>
+            <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
                 <label for="formGroupExampleInput" class="form-label">Логин</label>
-                <input name="login" type="text" class="form-control" id="login">
+                <input name="login" value="<?=$login?>" type="text" class="form-control" id="login">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
                 <label for="formGroupExampleInput" class="form-label">Фамилия</label>
-                <input name="lastname" type="text" class="form-control" id="lastName">
+                <input name="lastname" value="<?=$lastname?>" type="text" class="form-control" id="lastName">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
                 <label for="formGroupExampleInput" class="form-label">Имя</label>
-                <input name="firstname" type="text" class="form-control" id="firstName">
+                <input name="firstname" value="<?=$firstname?>" type="text" class="form-control" id="firstName">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
                 <label for="formGroupExampleInput" class="form-label">Отчество</label>
-                <input name="patronymic" type="text" class="form-control" id="patronymicName">
+                <input name="patronymic" value="<?=$patronymic?>" type="text" class="form-control" id="patronymicName">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input name="email" value="<?=$email?>" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="w-100"></div>
             <div class="mb-3 col-12 col-md-4">
