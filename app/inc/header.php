@@ -10,12 +10,24 @@
             <li><a href="<?php echo BASE_URL ?>">Главная</a></li>
             <li><a href="<?php echo BASE_URL .'about.php'?>">О нас</a></li>
             <li><a href="<?php echo BASE_URL . 'shop.php'?>">Товары</a></li>
+
             <li>
-              <a href="#"><i class="fa-solid fa-user"></i> Кабинет</a>
+              <?php if (isset($_SESSION['id'])): ?>
+                <a href="#"><i class="fa-solid fa-user"></i> 
+                <?php echo $_SESSION['login']; ?>
+              </a>
               <ul>
-                <li><a href="#">Заказы</a></li>
-                <li><a href="#">Выход</a></li>
+                <?php if ($_SESSION['admin']): ?>
+                <li><a href="#">Админ панель</a></li>
+                <?php endif; ?>
+                <li><a href="<?php echo BASE_URL . "logout.php"; ?>">Выход</a></li>
               </ul>
+              <?php else: ?>
+                <a href="<?php echo BASE_URL . "log.php"; ?>"><i class="fa-solid fa-user"></i> 
+                Войти
+                </a> 
+              <?php endif; ?>
+
             </li>
           </ul>
         </nav>
