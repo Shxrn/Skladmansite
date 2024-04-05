@@ -22,23 +22,19 @@
 <?php include ('../../app/inc/sidebar-admin.php'); ?>
         <div class="products col-9">
             <div class="button row">
-                <!--<a href="create.php" class="col-4 btn btn-success">Добавить товар</a>
-                <span class="col-1"></span> -->
-                <a href="<?php echo BASE_URL . "admin/users/index.php";?>" class="col-4 btn btn-warning">Редактировать заказ</a>
+                <a href="<?php echo BASE_URL . "admin/categories/create.php";?>" class="col-4 btn btn-success">Создать категорию</a>
+                <span class="col-1"></span>
+                <a href="<?php echo BASE_URL . "admin/categories/index.php";?>" class="col-4 btn btn-warning">Редактировать категорию</a>
             </div>
             <div class="row title-table">
-                <h2>Работа с заказами</h2>
+                <h2>Управление категориями</h2>
                 <div class="col-1">ID</div>
-                <div class="col-2">Клиент</div>
-                <div class="col-2">Дата заказа</div>
-                <div class="col-3">Статус заказа</div>
+                <div class="col-5">Название</div>
                 <div class="col-4">Управление</div>
             </div>
             <div class="row product">
                 <div class="id col-1">1</div>
-                <div class="title col-2">IluxaMad</div>
-                <div class="zdate col-2">05.04.2024</div>
-                <div class="zdate col-3">Ожидается отправка</div>
+                <div class="title col-5">Категория 1</div>
                 <div class="red col-2"><a href="">edit</a></div>
                 <div class="del col-2"><a href="">delete</a></div>
             </div>

@@ -1,5 +1,5 @@
 <?php include("../../path.php"); 
-      include("../../app/database/database.php")
+      include("../../app/controllers/categories.php");
       //session_start();
 ?>
 
@@ -22,23 +22,29 @@
 <?php include ('../../app/inc/sidebar-admin.php'); ?>
         <div class="products col-9">
             <div class="button row">
-                <a href="<?php echo BASE_URL . "admin/products/create.php";?>" class="col-3 btn btn-success">Добавить товар</a>
+                <a href="<?php echo BASE_URL . "admin/categories/create.php";?>" class="col-4 btn btn-success">Создать категорию</a>
                 <span class="col-1"></span>
-                <a href="<?php echo BASE_URL . "admin/products/index.php";?>" class="col-3 btn btn-warning">Редактировать товар</a>
+                <a href="<?php echo BASE_URL . "admin/categories/index.php";?>" class="col-4 btn btn-warning">Редактировать категорию</a>
             </div>
             <div class="row title-table">
-                <h2>Управление записями</h2>
-                <div class="col-1">ID</div>
-                <div class="col-5">Название</div>
-                <div class="col-2">Поставщик</div>
-                <div class="col-4">Управление</div>
+                <h2>Добавление Категории</h2>
             </div>
-            <div class="row product">
-                <div class="id col-1">1</div>
-                <div class="title col-5">Продкут 1</div>
-                <div class="provider col-2">Поставщик 1</div>
-                <div class="red col-2"><a href="">edit</a></div>
-                <div class="del col-2"><a href="">delete</a></div>
+            <div class="row add-product">
+                <div class="mb-12 col-12 col-md-12 err">
+                    <p><?=$errMsg?></p>
+                </div>
+                <form action="create.php" method="post">
+                    <div class="col">
+                        <input name="name" value="<?=$name;?>"type="text" class="form-control" placeholder="Название категории" aria-label="Название категории">
+                    </div>
+                    <div class="col">
+                        <label for="content" class="form-label">Описание категории</label>
+                        <textarea name="description" value="<?=$description;?>" class="form-control" id="content" rows="6"><?=$description;?></textarea>
+                    </div>
+                    <div class="col">
+                        <button name="category-create" class="btn btn-primary" type="submit">Добавить категорию</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
