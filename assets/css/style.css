@@ -176,7 +176,7 @@ sidebar
     margin-bottom: 30px;
 }
 
-.sidebar .products ul{
+.sidebar .categories ul{
     margin: 0px;
     padding: 0px;
     list-style: none;
@@ -184,7 +184,7 @@ sidebar
 
 }
 
-.sidebar .products ul li a{
+.sidebar .categories ul li a{
     display: block;
     padding: 15px 0px 15px 0px;
     border-bottom: 1px solid #585858;
@@ -194,7 +194,7 @@ sidebar
     font-size: 1.2em;
 }
 
-.sidebar .products ul li a:hover{
+.sidebar .categories ul li a:hover{
     padding-left: 10px;
     transition: all 0.3s;
 }

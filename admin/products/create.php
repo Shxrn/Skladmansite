@@ -1,10 +1,10 @@
 <?php include("../../path.php"); 
-      include("../../app/database/database.php")
-      //session_start();
+      //include("../../app/database/database.php");
+      include("../../app/controllers/products.php")       
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,24 +32,30 @@
             <div class="row add-product">
                 <form action="create.php" method="post">
                     <div class="col mb-4">
-                        <input type="text" class="form-control" placeholder="Название продукта" aria-label="Название продукта">
+                        <input name = "title" type="text" class="form-control" placeholder="Название продукта" aria-label="Название продукта">
+                    </div>
+                    <div class="col mb-4">
+                        <input name = "price" type="text" class="form-control" placeholder="Цена" aria-label="Цена">
+                    </div>
+                    <div class="col mb-4">
+                        <input name = "sum" type="text" class="form-control" placeholder="Количество" aria-label="Количество">
                     </div>
                     <div class="col">
                         <label for="editor" class="form-label">Описание товара</label>
-                        <textarea id="editor" class="form-control" rows="6"></textarea>
+                        <textarea name = "content" id="editor" class="form-control" rows="6"></textarea>
                     </div>
                     <div class="input-group col mb-4 mt-4">
-                        <input type="file" class="form-control" id="inputGroupFile02">
+                        <input name="img" type="file" class="form-control" id="inputGroupFile02">
                         <label class="input-group-text" for="inputGroupFile02">Загрузка</label>
                     </div>
-                    <select class="form-select mb-2" aria-label="Пример выбора по умолчанию">
-                        <option selected></option>
-                        <option value="1">Один</option>
-                        <option value="2">Два</option>
-                        <option value="3">Три</option>
+                    <select name="category" class="form-select mb-2" aria-label="Пример выбора по умолчанию">
+                        <option selected>Категория товара:</option>
+                        <?php foreach ($categories as $key => $category): ?>
+                            <option value="<?=$category['id']?>"><?=$category['name'];?></option> 
+                        <?php endforeach;?>    
                     </select>
                     <div class="col mb-4">
-                        <button class="btn btn-primary" type="submit">Добавить товар</button>
+                        <button name="add_product" class="btn btn-primary" type="submit">Добавить товар</button>
                     </div>
                 </form>
             </div>

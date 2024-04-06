@@ -1,5 +1,5 @@
 <?php include("path.php"); 
-      include("app/database/database.php");
+      include("app/controllers/categories.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -116,12 +116,14 @@
               <input type="text" name="search-term" class="text-input" placeholder="Поиск...">
             </form>
           </div>
-          <div class="section products">
+          <div class="section categories">
             <h3>Категории товаров</h3>
             <ul>
-              <li><a href="#">Масла</a></li>
-              <li><a href="#">Амортизаторы</a></li>
-              <li><a href="#">Аккумуляторы</a></li>
+              <?php foreach ($categories as $key => $category): ?>
+
+              <li><a href="#"><?=$category['name']?></a></li>
+
+              <?php endforeach; ?>
             </ul>
           </div>
 
