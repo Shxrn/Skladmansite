@@ -13,6 +13,9 @@ h6{
     color:whitesmoke;
 }
 
+label{
+    color: whitesmoke;
+}
 body{
     background: #424242;
 }
@@ -230,3 +233,4 @@ header ul li ul li{
     font-size: italic;
     font-size:  0.8rem;
 }
+

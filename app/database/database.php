@@ -132,3 +132,14 @@ function delete($table, $id){
     $query->execute();
     dbCheckError($query);
 }
+
+//выборка категорий в админку
+function selectAllFromPostsWithCategories($table1, $table2){
+    global $pdo;
+
+    $sql = "SELECT t1.id, t1.title, t1.img, t1.content, t1.status, t1.price, t1.sum, t2.name  FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_category = t2.id";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheckError($query);
+    return $query->fetchAll();
+}

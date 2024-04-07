@@ -30,7 +30,7 @@
                 <h2>Добавление товара</h2>
             </div>
             <div class="row add-product">
-                <form action="create.php" method="post">
+                <form action="create.php" method="post" enctype="multipart/form-data">
                     <div class="col mb-4">
                         <input name = "title" type="text" class="form-control" placeholder="Название продукта" aria-label="Название продукта">
                     </div>
@@ -54,7 +54,11 @@
                             <option value="<?=$category['id']?>"><?=$category['name'];?></option> 
                         <?php endforeach;?>    
                     </select>
-                    <div class="col mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="putUp" value="1" id="flexCheckChecked" checked>
+                        <label class="form-check-label" for="flexCheckChecked">Выставить на продажу</label>
+                    </div>
+                    <div class="col mb-6">
                         <button name="add_product" class="btn btn-primary" type="submit">Добавить товар</button>
                     </div>
                 </form>

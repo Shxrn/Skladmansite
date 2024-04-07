@@ -1,6 +1,13 @@
 <?php
 
 include SITE_ROOT . "/app/database/database.php";
+
+if (!$_SESSION){
+    header('location: ' . BASE_URL . 'log.php');
+}
+
+
+
 $errMsg = '';
 $id='';
 $title='';
@@ -9,16 +16,42 @@ $category='';
 $price='';
 $sum='';
 $categories = selectAll('categories');
+$products = selectAll('products');
+$productsCtg = selectAllFromPostsWithCategories('products', 'categories');
 
 
 //Код для формы создания товара
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])){
+
+    if(!empty($_FILES['img']['name'])){
+        $imgName = time() . "_" . $_FILES['img']['name'];
+        $fileTmpName = $_FILES['img']['tmp_name'];
+        $fileType = $_FILES['img']['type'];
+        $destination = ROOT_PATH . "\assets\images\product\\" . $imgName;
+
+        if (strpos($fileType, 'image') === false){
+            die("Можно загружать только изображения.");
+        }
+        else{
+            $result = move_uploaded_file($fileTmpName, $destination);
+
+            if ($result){
+                $_POST['img'] = $imgName;
+            }else{
+                $errMsg = "Ошибка загрузки изображения на сервер";
+            }
+        }
+    }else{
+        $errMsg = "Ошибка получения картинки"; 
+    }
 
     $title = trim($_POST['title']);
     $content = trim($_POST['content']);
     $category = trim($_POST['category']);
     $price = trim($_POST['price']);
     $sum = trim($_POST['sum']);
+
+    $putUp = isset($_POST['putUp']) ? 1 : 0;
 
     if($title=== '' || $content === '' || $category === '' || $price === '' || $sum === ''){
         $errMsg = "Не все поля заполнены!";
@@ -33,9 +66,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])){
             'sum' => $sum,
             'img' => $_POST['img'],
             'id_category' => $category,
-            'status' => 1
+            'status' => $putUp
 
         ];
+
         $product = insert('products', $product);
         $product = selectOne('products', ['id' => $id]);
         header('location: ' . BASE_URL . 'admin/products/index.php');

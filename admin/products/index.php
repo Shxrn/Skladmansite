@@ -1,6 +1,6 @@
 <?php include("../../path.php"); 
-      include("../../app/database/database.php")
-      //session_start();
+      //include("../../app/database/database.php");
+      include("../../app/controllers/products.php")  
 ?>
 
 <!doctype html>
@@ -27,19 +27,26 @@
                 <a href="<?php echo BASE_URL . "admin/products/index.php";?>" class="col-3 btn btn-warning">Редактировать товар</a>
             </div>
             <div class="row title-table">
-                <h2>Управление записями</h2>
+                <h2>Управление товарами</h2>
                 <div class="col-1">ID</div>
-                <div class="col-5">Название</div>
-                <div class="col-2">Поставщик</div>
-                <div class="col-4">Управление</div>
+                <div class="col-3">Название</div>
+                <div class="col-2">Категория</div>
+                <div class="col-6">Управление</div>
             </div>
+            <?php foreach ($productsCtg as $key => $product): ?>
             <div class="row product">
-                <div class="id col-1">1</div>
-                <div class="title col-5">Продкут 1</div>
-                <div class="provider col-2">Поставщик 1</div>
+                <div class="id col-1"><?=$key + 1;?></div>
+                <div class="title col-3"><?=$product['title'];?></div>
+                <div class="category col-2"><?=$product['name'];?></div>
                 <div class="red col-2"><a href="">edit</a></div>
                 <div class="del col-2"><a href="">delete</a></div>
+                <?php if ($product['status']): ?>
+                <div class="status col-2"><a href="">take off</a></div>
+                <?php else: ?>
+                <div class="status col-2"><a href="">put up</a></div>
+                <?php endif ?>
             </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
