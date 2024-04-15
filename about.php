@@ -1,4 +1,6 @@
-<?php include("path.php"); ?>
+<?php include("path.php"); 
+      include("app/controllers/categories.php");
+?>
 
 <!doctype html>
 <html lang="en">
@@ -34,20 +36,22 @@
         
         <!--sidebar Content-->
         <div class="sidebar col-md-3 col-12">
-            <div class="section search">
-                <h3>Поиск</h3>
-                <form action="/" method="post">
-                <input type="text" name="search-term" class="text-input" placeholder="Поиск...">
-                </form>
-            </div>
-            <div class="section products">
-                <h3>Категории товаров</h3>
-                <ul>
-                <li><a href="#">Масла</a></li>
-                <li><a href="#">Амортизаторы</a></li>
-                <li><a href="#">Аккумуляторы</a></li>
-                </ul>
-            </div>
+          <div class="section search">
+            <h3>Поиск</h3>
+            <form action="/" method="post">
+              <input type="text" name="search-term" class="text-input" placeholder="Поиск...">
+            </form>
+          </div>
+          <div class="section categories">
+            <h3>Категории товаров</h3>
+            <ul>
+              <?php foreach ($categories as $key => $category): ?>
+
+              <li><a href="<?=BASE_URL . 'category.php?id=' . $category['id']?>"><?=$category['name']?></a></li>
+
+              <?php endforeach; ?>
+            </ul>
+          </div>
 
         </div>
         </div>

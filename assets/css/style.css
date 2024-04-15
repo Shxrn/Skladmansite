@@ -21,6 +21,10 @@ a{
     color:whitesmoke;
 }
 
+ul{
+    color:whitesmoke;
+}
+
 input{
     padding: 10px 12px;
     display:block;
@@ -204,6 +208,9 @@ sidebar
     background: #171717;
     color:whitesmoke;
     position: relative;
+    right: 0;
+    bottom: 0;
+    
 }
 
 .footer .footer-section{
@@ -311,4 +318,8 @@ form div.err p{
     color: red;
     font-size: italic;
     font-size:  0.8rem;
+}
+
+.container {
+    color: whitesmoke;
 }

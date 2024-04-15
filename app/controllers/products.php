@@ -8,7 +8,7 @@ if (!$_SESSION){
 
 
 
-$errMsg = '';
+$errMsg = [];
 $id='';
 $title='';
 $content='';
@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])){
         $destination = ROOT_PATH . "\assets\images\product\\" . $imgName;
 
         if (strpos($fileType, 'image') === false){
-            die("Можно загружать только изображения.");
+            array_push($errMsg, "Можно загружать только изображения.");
         }
         else{
             $result = move_uploaded_file($fileTmpName, $destination);
@@ -38,11 +38,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])){
             if ($result){
                 $_POST['img'] = $imgName;
             }else{
-                $errMsg = "Ошибка загрузки изображения на сервер";
+                array_push($errMsg, "Ошибка загрузки изображения на сервер");
             }
         }
     }else{
-        $errMsg = "Ошибка получения картинки"; 
+        array_push($errMsg, "Ошибка получения картинки"); 
     }
 
     $title = trim($_POST['title']);
@@ -54,9 +54,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])){
     $putUp = isset($_POST['putUp']) ? 1 : 0;
 
     if($title=== '' || $content === '' || $category === '' || $price === '' || $sum === ''){
-        $errMsg = "Не все поля заполнены!";
+        array_push($errMsg, "Не все поля заполнены!");
     }elseif(mb_strlen($title, 'UTF8') < 3){
-        $errMsg = "Название должено быть не короче трех символов.";
+        array_push($errMsg, "Название должено быть не короче трех символов.");
     }
     else{
         $product = [
@@ -77,48 +77,98 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])){
     } 
 }
 else{
+    $id ='';
     $title = '';
     $content = '';
 }
 
 
-/* //редактирование категорий
+//редактирование товара
 
 if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])){
     $id = $_GET['id'];
-    $category = selectOne('categories', ['id' => $id]);
-    $id = $category['id'];
-    $name = $category['name'];
-    $description = $category['description'];
+    $product = selectOne('products', ['id' => $id]);
+
+
+    $id = $product['id'];
+    $title = $product['title'];
+    $content = $product['content'];
+    $category = $product['id_category'];
+    $price = $product['price'];
+    $sum = $product['sum'];
+    $putUp = $product['status'];
 }
 
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['category-edit'])){
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_product'])){
 
-    $name = trim($_POST['name']);
-    $description = trim($_POST['description']);
+    $title = trim($_POST['title']);
+    $content = trim($_POST['content']);
+    $category = trim($_POST['category']);
+    $price = trim($_POST['price']);
+    $sum = trim($_POST['sum']);
+    $putUp = $_POST['putUp'];
 
-    if($name=== '' || $description === '' ){
+    if(!empty($_FILES['img']['name'])){
+        $imgName = time() . "_" . $_FILES['img']['name'];
+        $fileTmpName = $_FILES['img']['tmp_name'];
+        $fileType = $_FILES['img']['type'];
+        $destination = ROOT_PATH . "\assets\images\product\\" . $imgName;
+
+        if (strpos($fileType, 'image') === false){
+            array_push($errMsg, "Можно загружать только изображения.");
+        }
+        else{
+            $result = move_uploaded_file($fileTmpName, $destination);
+
+            if ($result){
+                $_POST['img'] = $imgName;
+            }else{
+                array_push($errMsg, "Ошибка загрузки изображения на сервер");
+            }
+        }
+    }else{
+        array_push($errMsg, "Ошибка получения картинки"); 
+    }
+
+
+    if($title=== '' || $content === '' ){
         $errMsg = "Не все поля заполнены!";
-    }elseif(mb_strlen($name, 'UTF8') < 3){
-        $errMsg = "Категория должена быть не короче трех символов.";
+    }elseif(mb_strlen($title, 'UTF8') < 3){
+        $errMsg = "Товар должен быть не короче трех символов.";
     }
     else{
 
-        $category = [
-            'name' => $name,
-            'description' => $description
+        $product = [
+            'title' => $title,
+            'content' => $content,
+            'id_category' => $category,
+            'price' => $price,
+            'img' => $_POST['img'],
+            'sum' => $sum,
+            'status' => $putUp
 
         ];
         $id = $_POST['id'];
-        $category_id = update('categories', $id, $category);
-        header('location: ' . BASE_URL . 'admin/categories/index.php');
+        $product = update('products', $id, $product);
+        header('location: ' . BASE_URL . 'admin/products/index.php');
     }   
     
 }
 
+if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['pub_id'])){
+    $id = $_GET['pub_id'];
+    $putUp = $_GET['putUp'];
+    $productId = update('products', $id, ['status' => $putUp]); 
+    header('location: ' . BASE_URL . 'admin/products/index.php');
+    exit();
+} 
+
+
 //удаление категории
 if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])){
     $id = $_GET['del_id'];
-    delete('categories', $id); 
-    header('location: ' . BASE_URL . 'admin/categories/index.php');
-} */
+    delete('products', $id); 
+    header('location: ' . BASE_URL . 'admin/products/index.php');
+} 
+
+

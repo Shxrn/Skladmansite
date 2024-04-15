@@ -38,12 +38,12 @@
                 <div class="id col-1"><?=$key + 1;?></div>
                 <div class="title col-3"><?=$product['title'];?></div>
                 <div class="category col-2"><?=$product['name'];?></div>
-                <div class="red col-2"><a href="">edit</a></div>
-                <div class="del col-2"><a href="">delete</a></div>
+                <div class="red col-2"><a href="edit.php?id=<?=$product['id']?>">edit</a></div>
+                <div class="del col-2"><a href="edit.php?del_id=<?=$product['id']?>">delete</a></div>
                 <?php if ($product['status']): ?>
-                <div class="status col-2"><a href="">take off</a></div>
+                <div class="status col-2"><a href="edit.php?putUp=0&pub_id=<?=$product['id']?>">take off</a></div>
                 <?php else: ?>
-                <div class="status col-2"><a href="">put up</a></div>
+                <div class="status col-2"><a href="edit.php?putUp=1&pub_id=<?=$product['id']?>">put up</a></div>
                 <?php endif ?>
             </div>
             <?php endforeach; ?>

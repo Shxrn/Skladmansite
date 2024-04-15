@@ -1,5 +1,6 @@
 <?php include("path.php"); 
       include("app/controllers/categories.php");
+      $products = selectAllFromPostsWithCategoriesOnIndex('products', 'categories');
 ?>
 <!doctype html>
 <html lang="en">
@@ -60,59 +61,30 @@
       <!--main content-->
       <div class="main-content col-md-8 col-12">
         <h2>Последние товары</h2>
-        <div class="product row">
-          <div class="img col-12 col-md-4">
-            <img src="assets/images/LIQUI MOLY.jpg" alt="" class="img-thumbnail">
-          </div>
-          <div class="product_text col-12 col-md-8">
-            <h3>
-              <a href="#">Моторное масло LIQUI MOLY</a>
-            </h3>
-            <i class="far fa-user">LIQUI MOLY Russia</i>
-            <p class="preview-text">
-              Моторное масло LIQUI MOLY Special Tec AA 5W30 4л
-            </p>
+        <?php foreach ($products as $product): ?>
+          <div class="product row">
+            <div class="img col-12 col-md-4">
+              <img src="<?=BASE_URL .  'assets/images/product/' . $product['img']?>" alt="<?=$product['title']?>" class="img-thumbnail">
+            </div>
+            <div class="product_text col-12 col-md-8">
+              <h3>
+                <a href="<?=BASE_URL . 'single_product.php?product=' . $product['id'];?>"><?=substr($product['title'], 0, 120)?></a>
+              </h3>
+              <i class="fa-solid fa-layer-group">Категория: <?=$product['name']?></i>
+              <p class="preview-text">
+                <?=$product['content']?>
+              </p>
 
+            </div>
           </div>
-        </div>
-        <div class="product row">
-          <div class="img col-12 col-md-4">
-            <img src="assets/images/TCL.png" alt="" class="img-thumbnail">
-          </div>
-          <div class="product_text col-12 col-md-8">
-            <h3>
-              <a href="#">Моторное масло TCL 4л</a>
-            </h3>
-            <i class="far fa-user">OilMan</i>
-            <p class="preview-text">
-              Моторное масло TCL синтетическое Zero Line Fuel Economy Sp Gf-6 0W20 4л
-            </p>
-
-          </div>
-        </div>
-        <div class="product row">
-          <div class="img col-12 col-md-4">
-            <img src="assets/images/KYB.png" alt="" class="img-thumbnail">
-          </div>
-          <div class="product_text col-12 col-md-8">
-            <h3>
-              <a href="#">KYB Амортизаторы</a>
-            </h3>
-            <i class="far fa-user">Japan cars</i>
-            <p class="preview-text">
-              Качественные амортизаторы KYB прямиком из Японии
-            </p>
-
-          </div>
-        </div>
-
+        <?php endforeach; ?>
       </div>
     
       <!--sidebar Content-->
       <div class="sidebar col-md-3 col-12">
           <div class="section search">
             <h3>Поиск</h3>
-            <form action="/" method="post">
+            <form action="search.php" method="post">
               <input type="text" name="search-term" class="text-input" placeholder="Поиск...">
             </form>
           </div>
@@ -121,7 +93,7 @@
             <ul>
               <?php foreach ($categories as $key => $category): ?>
 
-              <li><a href="#"><?=$category['name']?></a></li>
+              <li><a href="<?=BASE_URL . 'category.php?id=' . $category['id']?>"><?=$category['name']?></a></li>
 
               <?php endforeach; ?>
             </ul>

@@ -20,6 +20,9 @@
                 <?php if ($_SESSION['admin']): ?>
                 <li><a href="#">Админ панель</a></li>
                 <?php endif; ?>
+                <?php if ($_SESSION['admin'] === 0): ?>
+                <li><a href="user.php">Личный кабинет</a></li>
+                <?php endif; ?>
                 <li><a href="<?php echo BASE_URL . "logout.php"; ?>">Выход</a></li>
               </ul>
               <?php else: ?>

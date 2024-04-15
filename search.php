@@ -1,6 +1,9 @@
 <?php include("path.php"); 
+      //include(SITE_ROOT . "/app/database/database.php");
       include("app/controllers/categories.php");
-      $products = selectAllFromPostsWithCategoriesOnIndex('products', 'categories');
+      if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search-term'])){
+        $products = searchInTitle($_POST['search-term'], 'products', 'categories');
+      }
 ?>
 
 <!doctype html>

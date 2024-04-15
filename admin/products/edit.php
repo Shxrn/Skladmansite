@@ -27,42 +27,47 @@
                 <a href="<?php echo BASE_URL . "admin/products/index.php";?>" class="col-3 btn btn-warning">Редактировать товар</a>
             </div>
             <div class="row title-table">
-                <h2>Добавление товара</h2>
+                <h2>Редактирование товара</h2>
             </div>
             <div class="row add-product">
                 <div class = "mb-12 col-12 col-md-12 err">
                     <?php include ('../../app/helps/errorinfo.php'); ?>
                 </div>
-                <form action="create.php" method="post" enctype="multipart/form-data">
+                <form action="edit.php" method="post" enctype="multipart/form-data">
+                <input type ="hidden" name="id" value="<?=$id;?>">
                     <div class="col mb-4">
-                        <input name = "title" type="text" class="form-control" placeholder="Название продукта" aria-label="Название продукта">
+                        <input name = "title" value="<?=$title?>" type="text" class="form-control" placeholder="Название продукта" aria-label="Название продукта">
                     </div>
                     <div class="col mb-4">
-                        <input name = "price" type="text" class="form-control" placeholder="Цена" aria-label="Цена">
+                        <input name = "price" value="<?=$price?>" type="text" class="form-control" placeholder="Цена" aria-label="Цена">
                     </div>
                     <div class="col mb-4">
-                        <input name = "sum" type="text" class="form-control" placeholder="Количество" aria-label="Количество">
+                        <input name = "sum" value="<?=$sum?>" type="text" class="form-control" placeholder="Количество" aria-label="Количество">
                     </div>
                     <div class="col">
                         <label for="editor" class="form-label">Описание товара</label>
-                        <textarea name = "content" id="editor" class="form-control" rows="6"></textarea>
+                        <textarea name = "content" id="editor" class="form-control" rows="6"><?=$content?></textarea>
                     </div>
                     <div class="input-group col mb-4 mt-4">
                         <input name="img" type="file" class="form-control" id="inputGroupFile02">
                         <label class="input-group-text" for="inputGroupFile02">Загрузка</label>
                     </div>
                     <select name="category" class="form-select mb-2" aria-label="Пример выбора по умолчанию">
-                        <option selected>Категория товара:</option>
                         <?php foreach ($categories as $key => $category): ?>
                             <option value="<?=$category['id']?>"><?=$category['name'];?></option> 
                         <?php endforeach;?>    
                     </select>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="putUp" value="1" id="flexCheckChecked" checked>
-                        <label class="form-check-label" for="flexCheckChecked">Выставить на продажу</label>
+                        <?php if (empty($putUp) && $putUp == 0): ?>
+                            <input class="form-check-input" type="checkbox" name="putUp" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">Выставить на продажу</label>
+                        <?php else: ?>
+                            <input class="form-check-input" type="checkbox" name="putUp" value="1" id="flexCheckChecked" checked>
+                            <label class="form-check-label" for="flexCheckChecked">Выставить на продажу</label>
+                        <?php endif; ?>
                     </div>
                     <div class="col mb-6">
-                        <button name="add_product" class="btn btn-primary" type="submit">Добавить товар</button>
+                        <button name="edit_product" class="btn btn-primary" type="submit">Обновить товар</button>
                     </div>
                 </form>
             </div>

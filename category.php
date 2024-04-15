@@ -1,6 +1,7 @@
 <?php include("path.php"); 
       include("app/controllers/categories.php");
-      $products = selectAllFromPostsWithCategoriesOnIndex('products', 'categories');
+      $products = selectAll('products', ['id_category'=> $_GET['id']]);
+      $category = selectOne('categories', ['id'=> $_GET['id']]);
 ?>
 
 <!doctype html>
@@ -23,7 +24,7 @@
     <div class="content row">
       <!--main content-->
       <div class="main-content col-md-8 col-12">
-        <h2>Каталог товаров</h2>
+        <h2><?=$category['name']; ?></h2>
           <?php foreach ($products as $product): ?>
             <div class="product row">
               <div class="img col-12 col-md-4">
@@ -33,7 +34,7 @@
                 <h3>
                   <a href="<?=BASE_URL . 'single_product.php?product=' . $product['id'];?>"><?=substr($product['title'], 0, 120)?></a>
                 </h3>
-                <i class="fa-solid fa-layer-group">Категория: <?=$product['name']?></i>
+                <!--<i class="fa-solid fa-layer-group">Категория: <?=$product['name']?></i>-->
                 <p class="preview-text">
                   <?=$product['content']?>
                 </p>

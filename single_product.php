@@ -1,4 +1,7 @@
-<?php include("path.php"); ?>
+<?php include("path.php"); 
+      include("app/controllers/categories.php");
+$product = selectAllFromPostsWithCategoriesOnIndexSingle('products', 'categories', $_GET['product']);
+?>
 
 <!doctype html>
 <html lang="en">
@@ -20,26 +23,17 @@
     <div class="content row">
       <!--main content-->
       <div class="main-content col-md-8 col-12">
-        <h2>Характеристики - моторное масло LIQUI MOLY Special Tec AA 5W30 4л</h2>
+        <h2><?php echo $product['title']; ?></h2>
         <div class="single_product row">
           <div class="img col-12 col-md-4">
-            <img src="assets/images/LIQUI MOLY.jpg" alt="" class="img-thumbnail">
+            <img src="<?=BASE_URL .  'assets/images/product/' . $product['img']?>" alt="<?=$product['title']?>" class="img-thumbnail">
             <div class="btnset">
                 <button type="button" class="btn btn-light">Купить</button>
             </div>
           </div>
           <div class="single_product_text col-12 col-md-8">
-            <p>Поставщик: <i class="far fa-user">LIQUI MOLY Russia</i></p>
-            <p>Тип: моторное масло</p>
-            <p>Область применения: двигатель</p>
-            <p>Объем, л: 4</p>
-            <p>Спецификации OEM: FIAT 9.55535-CR1; Ford WSS-M2C 946-B1; Ford WSS-M2C 946-A; GM Dexos 1 Gen 2</p>
-            <p>Вязкость по SAE: 5w30</p>
-            <p>Класс API: SP </p>
-            <p>Класс ILSAC: GF-6A</p>
-            <p>Код товара: 100041510788</p>
-
-
+            <h4>Цена: <?=$product['price']?> руб.</h4>
+            <?=$product['content']?>
           </div>
         </div>
       </div>
@@ -48,19 +42,20 @@
       <div class="sidebar col-md-3 col-12">
           <div class="section search">
             <h3>Поиск</h3>
-            <form action="/" method="post">
+            <form action="search.php" method="post">
               <input type="text" name="search-term" class="text-input" placeholder="Поиск...">
             </form>
           </div>
-          <div class="section products">
+          <div class="section categories">
             <h3>Категории товаров</h3>
             <ul>
-              <li><a href="#">Масла</a></li>
-              <li><a href="#">Амортизаторы</a></li>
-              <li><a href="#">Аккумуляторы</a></li>
+              <?php foreach ($categories as $key => $category): ?>
+
+              <li><a href="<?=BASE_URL . 'category.php?id=' . $category['id']?>"><?=$category['name']?></a></li>
+
+              <?php endforeach; ?>
             </ul>
           </div>
-
       </div>
     </div>
   </div>

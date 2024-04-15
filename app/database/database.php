@@ -143,3 +143,36 @@ function selectAllFromPostsWithCategories($table1, $table2){
     dbCheckError($query);
     return $query->fetchAll();
 }
+
+function selectAllFromPostsWithCategoriesOnIndex($table1, $table2){
+    global $pdo;
+
+    $sql = "SELECT p.*, c.name FROM $table1 AS p JOIN $table2 AS c ON p.id_category = c.id WHERE p.status=1";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheckError($query);
+    return $query->fetchAll();
+}
+
+//поиск по заголовкам
+function searchInTitle($text, $table1, $table2){
+    $text = trim(strip_tags(stripcslashes(htmlspecialchars($text))));
+    global $pdo;
+
+    $sql = "SELECT p.*, c.name FROM $table1 AS p JOIN $table2 AS c ON p.id_category = c.id WHERE p.status=1 AND p.title LIKE '%$text%'";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheckError($query);
+    return $query->fetchAll();
+}
+
+//выборка записи для одной страницы
+function selectAllFromPostsWithCategoriesOnIndexSingle($table1, $table2, $id){
+    global $pdo;
+
+    $sql = "SELECT p.*, c.name FROM $table1 AS p JOIN $table2 AS c ON p.id_category = c.id WHERE p.id=$id";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheckError($query);
+    return $query->fetch();
+}
